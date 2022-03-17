@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 
 namespace BankAPP
 {
+    using System.Runtime.CompilerServices;
+
     using Newtonsoft.Json;
 
     enum BankAccountType
@@ -28,21 +30,18 @@ namespace BankAPP
         {
             SetAccountNumber();
         }
-        public BankAccount(double balance)
+        public BankAccount(double balance) : this()
         {
-            SetAccountNumber();
             Balance = balance;
         }
 
-        public BankAccount(BankAccountType type)
+        public BankAccount(BankAccountType type) : this(balance: 0)
         {
-            SetAccountNumber();
             AccountType = type;
         }
 
-        public BankAccount(double balance, BankAccountType type)
+        public BankAccount(double balance, BankAccountType type) : this()
         {
-            SetAccountNumber();
             Balance = balance;
             AccountType = type;
         }
@@ -57,12 +56,25 @@ namespace BankAPP
         }
 
 
+        public void Withdraw(double amount)
+        {
+            if (Balance - amount > 0)
+            {
+                Balance -= amount;
+            }
+        }
+
+        public void Deposit(double amount)
+        {
+            Balance += amount;
+        }
+
         public override string ToString()
         {
 
             StringBuilder sb = new StringBuilder();
             sb.Append($"Account Number: {AccountNumber} ; ");
-            sb.Append($"Balance: {Balance} ; ");
+            sb.Append($"Balance: {Balance:F2} ; ");
             sb.Append($"Account Type: {AccountType} ; ");
 
             return sb.ToString();
