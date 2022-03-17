@@ -18,17 +18,16 @@ namespace BankAPP
 
     internal class BankAccount
     {
-        private int _accountNumber;
+        private static int _accountNumber;
 
         private double _balance;
 
         private BankAccountType _accountType;
 
-        public void SetAccountNumber(int accNum)
+        public static void SetAccountNumber()
         {
-            _accountNumber = accNum;
+            _accountNumber++;
         }
-
         public int GetAccountNumber()
         {
             return _accountNumber;
