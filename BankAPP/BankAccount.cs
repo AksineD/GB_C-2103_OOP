@@ -31,47 +31,39 @@ namespace BankAPP
         public BankAccount(double balance)
         {
             SetAccountNumber();
-            _balance = balance;
+            Balance = balance;
         }
 
         public BankAccount(BankAccountType type)
         {
             SetAccountNumber();
-            _accountType = type;
+            AccountType = type;
         }
 
         public BankAccount(double balance, BankAccountType type)
         {
             SetAccountNumber();
-            _balance = balance;
-            _accountType = type;
+            Balance = balance;
+            AccountType = type;
         }
+
+        public static int AccountNumber { get => _accountNumber; set => _accountNumber = value; }
+        public double Balance { get => _balance; set => _balance = value; }
+        internal BankAccountType AccountType { get => _accountType; set => _accountType = value; }
 
         private static void SetAccountNumber()
         {
-            _accountNumber++;
-        }
-        public int GetAccountNumber()
-        {
-            return _accountNumber;
-        }
-        public double GetBalance()
-        {
-            return this._balance;
+            AccountNumber++;
         }
 
-        public BankAccountType GetAccountType()
-        {
-            return _accountType;
-        }
 
         public override string ToString()
         {
 
             StringBuilder sb = new StringBuilder();
-            sb.Append($"Account Number: {this.GetAccountNumber()} ; ");
-            sb.Append($"Balance: {this.GetBalance()} ; ");
-            sb.Append($"Account Type: {this.GetAccountType()} ; ");
+            sb.Append($"Account Number: {AccountNumber} ; ");
+            sb.Append($"Balance: {Balance} ; ");
+            sb.Append($"Account Type: {AccountType} ; ");
 
             return sb.ToString();
         }
