@@ -157,5 +157,14 @@ namespace BankAPP
         {
             return _id++;
         }
+        
+        public void TransferMoney(ref BankAccount origin, double amount)
+        {
+            if (origin != null && origin.Balance > amount)
+            {
+                origin.Withdraw(amount);
+                this.Deposit(amount);
+            }
+        }
     }
 }
