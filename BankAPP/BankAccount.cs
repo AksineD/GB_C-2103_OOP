@@ -16,38 +16,38 @@ namespace BankAPP
     #endregion
 
     /// <summary>
-    /// The bank account type.
+    ///     The bank account type.
     /// </summary>
     internal enum BankAccountType
     {
         /// <summary>
-        /// The current.
+        ///     The current.
         /// </summary>
         Current,
 
         /// <summary>
-        /// The savings.
+        ///     The savings.
         /// </summary>
         Savings,
 
         /// <summary>
-        /// The foreign.
+        ///     The foreign.
         /// </summary>
         Foreign
     }
 
     /// <summary>
-    /// The bank account.
+    ///     The bank account.
     /// </summary>
     internal class BankAccount
     {
         /// <summary>
-        /// The _id.
+        ///     The _id.
         /// </summary>
         private static int _id;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="BankAccount"/> class.
+        ///     Initializes a new instance of the <see cref="BankAccount" /> class.
         /// </summary>
         public BankAccount()
         {
@@ -95,17 +95,17 @@ namespace BankAPP
         }
 
         /// <summary>
-        /// Gets the account number.
+        ///     Gets the account number.
         /// </summary>
-        public int AccountNumber { get; private set; }
+        public int AccountNumber { get; }
 
         /// <summary>
-        /// Gets or sets the balance.
+        ///     Gets or sets the balance.
         /// </summary>
         public double Balance { get; set; }
 
         /// <summary>
-        /// Gets or sets the account type.
+        ///     Gets or sets the account type.
         /// </summary>
         internal BankAccountType AccountType { get; set; }
 
@@ -121,10 +121,10 @@ namespace BankAPP
         }
 
         /// <summary>
-        /// The to string.
+        ///     The to string.
         /// </summary>
         /// <returns>
-        /// The <see cref="string"/>.
+        ///     The <see cref="System.String" /> .
         /// </returns>
         public override string ToString()
         {
@@ -134,6 +134,24 @@ namespace BankAPP
             sb.Append($"Account Type: {this.AccountType} ; ");
 
             return sb.ToString();
+        }
+
+        /// <summary>
+        /// The transfer money.
+        /// </summary>
+        /// <param name="origin">
+        /// The origin.
+        /// </param>
+        /// <param name="amount">
+        /// The amount.
+        /// </param>
+        public void TransferMoney(ref BankAccount origin, double amount)
+        {
+            if (origin != null && origin.Balance > amount)
+            {
+                origin.Withdraw(amount);
+                this.Deposit(amount);
+            }
         }
 
         /// <summary>
@@ -148,23 +166,14 @@ namespace BankAPP
         }
 
         /// <summary>
-        /// The get next account id.
+        ///     The get next account id.
         /// </summary>
         /// <returns>
-        /// The <see cref="int"/>.
+        ///     The <see cref="System.Int32" /> .
         /// </returns>
         private static int GetNextAccountId()
         {
             return _id++;
-        }
-        
-        public void TransferMoney(ref BankAccount origin, double amount)
-        {
-            if (origin != null && origin.Balance > amount)
-            {
-                origin.Withdraw(amount);
-                this.Deposit(amount);
-            }
         }
     }
 }

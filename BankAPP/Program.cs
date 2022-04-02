@@ -39,7 +39,3 @@ Console.WriteLine("transfer 500 from ba1 to ba2");
 ba2.TransferMoney(ref ba1, 500);
 Console.WriteLine(ba1.ToString());
 Console.WriteLine(ba2.ToString());
-
-
-//Console.WriteLine($"new balance ba2: {ba2.Balance}");
-//Console.WriteLine($"new balance ba1: {ba1.Balance}");
