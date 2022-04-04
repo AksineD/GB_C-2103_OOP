@@ -24,7 +24,30 @@ namespace BankAPP
 
         private BankAccountType _accountType;
 
-        public static void SetAccountNumber()
+        public BankAccount()
+        {
+            SetAccountNumber();
+        }
+        public BankAccount(double balance)
+        {
+            SetAccountNumber();
+            _balance = balance;
+        }
+
+        public BankAccount(BankAccountType type)
+        {
+            SetAccountNumber();
+            _accountType = type;
+        }
+
+        public BankAccount(double balance, BankAccountType type)
+        {
+            SetAccountNumber();
+            _balance = balance;
+            _accountType = type;
+        }
+
+        private static void SetAccountNumber()
         {
             _accountNumber++;
         }
@@ -32,20 +55,9 @@ namespace BankAPP
         {
             return _accountNumber;
         }
-
-        public void SetBalance(double balance)
-        {
-            _balance = balance;
-        }
-
         public double GetBalance()
         {
             return this._balance;
-        }
-
-        public void SetAccountType(BankAccountType type)
-        {
-            _accountType = type;
         }
 
         public BankAccountType GetAccountType()
